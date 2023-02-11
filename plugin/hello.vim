@@ -1,1 +1,1 @@
-command! -nargs=0 HelloPlugin :echo <args>
+command! -nargs=0 HelloPlugin :echo "hello vim plugin"
