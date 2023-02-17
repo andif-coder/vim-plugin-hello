@@ -10,4 +10,5 @@ Click `cin(` in the common mode of vim, it will match the first `( `in the curre
 ## Bug
 
 Appearing `()/<>` will delete `(`and then enter insert mode
+
 Appearance of `{}` will delete more
