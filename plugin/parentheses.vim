@@ -19,15 +19,21 @@ onoremap al{ :<c-u>call <SID>Parentheses("a", "{", "F")<cr>
 onoremap al[ :<c-u>call <SID>Parentheses("a", "[", "F")<cr>
 onoremap al< :<c-u>call <SID>Parentheses("a", "<", "F")<cr>
 
-let g:m = {'(': ')', '{': '}', '[': ']', '<': '>'}
+let g:parentheses = get(g:, 'parentheses', {'(': ')', '{': '}', '[': ']', '<': '>'})
 
 function! s:Parentheses(i_or_a, bracket, f_or_F)
-    " echo a:i_or_a
-    " echo a:bracket
-    if !has_key(g:m, a:bracket)
+    if !has_key(g:parentheses, a:bracket)
         return
     endif
-    " echom "normal! " a:f_or_F . a:bracket . "v" .a:i_or_a . a:bracket                                                                           
-    execute "normal! ". a:f_or_F . a:bracket . "v" .a:i_or_a . a:bracket
-    " execute "normal! `<v`>y"
+    echom a:bracket
+    if a:f_or_F ==# 'F'
+        let s:bracket = get(g:parentheses, a:bracket)
+        echom s:bracket
+        execute "normal! F". s:bracket 
+        execute "normal! %"
+        execute "normal! v" . a:i_or_a . a:bracket
+    else
+        execute "normal! ". a:f_or_F . a:bracket . "v" . a:i_or_a . a:bracket
+    endif
+
 endfunction
