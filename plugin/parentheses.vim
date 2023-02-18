@@ -25,10 +25,8 @@ function! s:Parentheses(i_or_a, bracket, f_or_F)
     if !has_key(g:parentheses, a:bracket)
         return
     endif
-    echom a:bracket
     if a:f_or_F ==# 'F'
         let s:bracket = get(g:parentheses, a:bracket)
-        echom s:bracket
         execute "normal! F". s:bracket 
         execute "normal! %"
         execute "normal! v" . a:i_or_a . a:bracket
